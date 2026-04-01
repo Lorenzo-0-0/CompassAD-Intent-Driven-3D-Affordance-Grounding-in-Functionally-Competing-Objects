@@ -29,7 +29,7 @@
 </p>
 
 <p align="center">
-  <img src="./images/teaser.jpg" alt="CompassAD teaser figure" width="88%" />
+  <img src="./images/teaser.png" alt="CompassAD teaser figure" width="88%" />
 </p>
 
 <table align="center" width="88%">
@@ -100,7 +100,7 @@
 ## Qualitative Comparison
 
 <p align="center">
-  <img src="./images/qualitative.jpg" alt="Qualitative comparison on CompassAD" width="88%" />
+  <img src="./images/qualitative.png" alt="Qualitative comparison on CompassAD" width="88%" />
 </p>
 
 **Qualitative comparison on CompassAD.** Each triplet shows ground truth (GT), CompassNet (Ours), and GLANCE (SOTA). **Left:** the same scene queried with different intents activates different objects/regions (chair seat *vs.* bed surface), illustrating query-dependent disambiguation. **Right:** diverse confusing pairs (knife *vs.* scissors, skateboard *vs.* surfboard, kettle *vs.* cup). Red denotes higher affordance probability.
@@ -110,7 +110,7 @@
 ## Real-World Robot Deployment
 
 <p align="center">
-  <img src="./images/robot.jpg" alt="Real-world robotic grasping" width="88%" />
+  <img src="./images/robot.png" alt="Real-world robotic grasping" width="88%" />
 </p>
 
 **Real-world robotic grasping in confusing multi-object scenes.** Each row shows a different scenario. Real-world scene containing confusing objects and distractors. Affordance prediction from CompassNet on the reconstructed point cloud (red = high probability). Robotic grasp execution based on the predicted affordance. **Top:** given a cutting-related query, the model correctly identifies the knife over scissors. **Bottom:** given a hammering-related query, the model correctly identifies the hammer over distractors.
@@ -120,34 +120,19 @@
 ## More Qualitative Results
 
 <p align="center">
-  <img src="./images/more_results_1.jpg" alt="Additional qualitative results 1" width="70%" />
+  <img src="./images/more_results_1.png" alt="Additional qualitative results 1" width="70%" />
 </p>
 
 <p align="center">
-  <img src="./images/more_results_2.jpg" alt="Additional qualitative results 2" width="70%" />
+  <img src="./images/more_results_2.png" alt="Additional qualitative results 2" width="70%" />
 </p>
 
 <p align="center">
-  <img src="./images/more_results_3.jpg" alt="Additional qualitative results 3" width="70%" />
+  <img src="./images/more_results_3.png" alt="Additional qualitative results 3" width="70%" />
 </p>
 
 ---
 
-## Citation
-
-If you find this work useful, please consider citing:
-
-```bibtex
-@article{li2026compassad,
-  title={CompassAD: Intent-Driven 3D Affordance Grounding in Functionally Competing Objects},
-  author={Li, Jingliang and Jia, Jindou and An, Tuo and Zhou, Chuhao and Chen, Xiangyu and Shan, Shilin and Ma, Boyu and Lyu, Bofan and Li, Gen and Yang, Jianfei},
-  journal={European Conference on Computer Vision (ECCV)},
-  year={2026}
-}
-```
-
----
-
 <p align="center">
-  <i>Code coming soon.</i>
+  <b>Code and dataset will be released soon. Stay tuned!</b>
 </p>
