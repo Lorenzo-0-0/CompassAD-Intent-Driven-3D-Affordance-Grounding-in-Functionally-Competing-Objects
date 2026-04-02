@@ -45,7 +45,7 @@
 
 ---
 
-## Method
+## :gear: Method
 
 <p align="center">
   <img src="./images/method.png" alt="CompassNet architecture" width="88%" />
@@ -55,7 +55,7 @@
 
 ---
 
-## CompassAD Benchmark
+## :bar_chart: CompassAD Benchmark
 
 <p align="center">
   <img src="./images/dataset.png" alt="CompassAD benchmark overview" width="88%" />
@@ -63,7 +63,7 @@
 
 ---
 
-## Qualitative Comparison
+## :art: Qualitative Comparison
 
 <p align="center">
   <img src="./images/qualitative.png" alt="Qualitative comparison on CompassAD" width="88%" />
@@ -71,7 +71,7 @@
 
 ---
 
-## Real-World Robot Deployment
+## :robot: Real-World Robot Deployment
 
 <p align="center">
   <img src="./images/robot.png" alt="Real-world robotic grasping" width="88%" />
@@ -79,7 +79,7 @@
 
 ---
 
-## More Qualitative Results
+## :sparkles: More Qualitative Results
 
 <p align="center">
   <img src="./images/more_results_1.png" alt="Additional qualitative results 1" width="70%" />
