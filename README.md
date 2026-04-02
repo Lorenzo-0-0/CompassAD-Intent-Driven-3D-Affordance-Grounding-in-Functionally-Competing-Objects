@@ -11,7 +11,7 @@
   <strong>Jingliang Li</strong><sup>1</sup>,
   <a href="https://jiajindou.github.io/"><strong>Jindou Jia</strong></a><sup>1</sup>,
   <a href="https://morpheus-an.github.io/"><strong>Tuo An</strong></a><sup>1</sup>,
-  <a href="https://marslab.tech/members/chuhao-zhou.html"><strong>Chuhao Zhou</strong></a><sup>1</sup>,
+  <a href="https://chuhaozhou99.github.io/Chuhao-Zhou/"><strong>Chuhao Zhou</strong></a><sup>1</sup>,
   <a href="https://xyc0212.github.io/"><strong>Xiangyu Chen</strong></a><sup>1</sup>,
   <a href="https://shanshilin.github.io/"><strong>Shilin Shan</strong></a><sup>1</sup>,
   <a href="https://ma-boyu.github.io/"><strong>Boyu Ma</strong></a><sup>1</sup>,
