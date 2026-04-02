@@ -1,4 +1,4 @@
-<h1 align="center"><img src="./images/compass_icon.svg" alt="compass" width="42" style="vertical-align: middle; margin-right: 6px;" /> CompassAD: Intent-Driven 3D Affordance Grounding<br />in Functionally Competing Objects</h1>
+<h1 align="center"><img src="./images/Compass-PNG-Pic.png" alt="compass" width="36" style="vertical-align: middle;" /> CompassAD: Intent-Driven 3D Affordance Grounding<br />in Functionally Competing Objects</h1>
 
 <p align="center">
   <a href="#"><img src="https://img.shields.io/badge/arXiv-coming_soon-b31b1b?logo=arxiv&logoColor=white" alt="arXiv" /></a>
