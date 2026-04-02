@@ -8,15 +8,16 @@
 </p>
 
 <p align="center">
-  <strong>Jingliang Li</strong><sup>1</sup>,
-  <a href="https://jiajindou.github.io/"><strong>Jindou Jia</strong></a><sup>1</sup>,
-  <a href="https://morpheus-an.github.io/"><strong>Tuo An</strong></a><sup>1</sup>,
-  <a href="https://chuhaozhou99.github.io/Chuhao-Zhou/"><strong>Chuhao Zhou</strong></a><sup>1</sup>,
-  <a href="https://xyc0212.github.io/"><strong>Xiangyu Chen</strong></a><sup>1</sup>,
-  <a href="https://shanshilin.github.io/"><strong>Shilin Shan</strong></a><sup>1</sup>,
-  <a href="https://ma-boyu.github.io/"><strong>Boyu Ma</strong></a><sup>1</sup>,
-  <strong>Bofan Lyu</strong><sup>1</sup>,
-  <a href="https://reagan1311.github.io/"><strong>Gen Li</strong></a><sup>1,†</sup>,
+  <strong>Jingliang Li</strong><sup>1</sup> &nbsp;&nbsp;
+  <a href="https://jiajindou.github.io/"><strong>Jindou Jia</strong></a><sup>1</sup> &nbsp;&nbsp;
+  <a href="https://morpheus-an.github.io/"><strong>Tuo An</strong></a><sup>1</sup> &nbsp;&nbsp;
+  <a href="https://chuhaozhou99.github.io/Chuhao-Zhou/"><strong>Chuhao Zhou</strong></a><sup>1</sup>
+  <br />
+  <a href="https://xyc0212.github.io/"><strong>Xiangyu Chen</strong></a><sup>1</sup> &nbsp;&nbsp;
+  <a href="https://shanshilin.github.io/"><strong>Shilin Shan</strong></a><sup>1</sup> &nbsp;&nbsp;
+  <a href="https://ma-boyu.github.io/"><strong>Boyu Ma</strong></a><sup>1</sup> &nbsp;&nbsp;
+  <strong>Bofan Lyu</strong><sup>1</sup> &nbsp;&nbsp;
+  <a href="https://reagan1311.github.io/"><strong>Gen Li</strong></a><sup>1,†</sup> &nbsp;&nbsp;
   <a href="https://marsyang.site/"><strong>Jianfei Yang</strong></a><sup>1,†</sup>
 </p>
 
