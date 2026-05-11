@@ -1,20 +1,11 @@
 <h1 align="center"><img src="./images/Compass-PNG-Pic.png" alt="" width="45" height="45" /> CompassAD: Intent-Driven 3D Affordance Grounding<br />in Functionally Competing Objects</h1>
 
 <p align="center">
-  <a href="https://lorenzo-0-0.github.io/CompassAD-Intent-Driven-3D-Affordance-Grounding-in-Functionally-Competing-Objects/"><img src="https://img.shields.io/badge/🌐_PROJECT_PAGE-Visit-1E40AF?style=for-the-badge" alt="Project Page" /></a>
-  &nbsp;
-  <a href="https://arxiv.org/abs/2604.02060"><img src="https://img.shields.io/badge/📄_arXiv-2604.02060-b31b1b?style=for-the-badge" alt="arXiv" /></a>
-</p>
-
-<p align="center">
   <a href="https://arxiv.org/abs/2604.02060"><img src="https://img.shields.io/badge/arXiv-2604.02060-b31b1b?logo=arxiv&logoColor=white" alt="arXiv" /></a>
   <a href="https://lorenzo-0-0.github.io/CompassAD-Intent-Driven-3D-Affordance-Grounding-in-Functionally-Competing-Objects/"><img src="https://img.shields.io/badge/Project_Page-Live-2ea44f?logo=googlechrome&logoColor=white" alt="Project Page" /></a>
   <a href="https://github.com/Lorenzo-0-0/CompassAD-Intent-Driven-3D-Affordance-Grounding-in-Functionally-Competing-Objects"><img src="https://img.shields.io/badge/Code-GitHub-181717?logo=github&logoColor=white" alt="Code" /></a>
   <img src="https://komarev.com/ghpvc/?username=Lorenzo-0-0&repo=CompassAD-Intent-Driven-3D-Affordance-Grounding-in-Functionally-Competing-Objects&color=blueviolet" alt="Visitors" />
 </p>
-
-> 🌐 **Project Page**: https://lorenzo-0-0.github.io/CompassAD-Intent-Driven-3D-Affordance-Grounding-in-Functionally-Competing-Objects/
-> 📄 **Paper**: https://arxiv.org/abs/2604.02060
 
 <p align="center">
   <strong>Jingliang Li</strong><sup>1</sup> &nbsp;&nbsp;
