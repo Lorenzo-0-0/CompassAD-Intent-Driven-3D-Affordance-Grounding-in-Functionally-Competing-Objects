@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://arxiv.org/abs/2604.02060"><img src="https://img.shields.io/badge/arXiv-2604.02060-b31b1b?logo=arxiv&logoColor=white" alt="arXiv" /></a>
-  <a href="#"><img src="https://img.shields.io/badge/Project_Page-TBD-2ea44f?logo=googlechrome&logoColor=white" alt="Project Page" /></a>
+  <a href="https://lorenzo-0-0.github.io/CompassAD-Intent-Driven-3D-Affordance-Grounding-in-Functionally-Competing-Objects/"><img src="https://img.shields.io/badge/Project_Page-Live-2ea44f?logo=googlechrome&logoColor=white" alt="Project Page" /></a>
   <a href="https://github.com/Lorenzo-0-0/CompassAD-Intent-Driven-3D-Affordance-Grounding-in-Functionally-Competing-Objects"><img src="https://img.shields.io/badge/Code-GitHub-181717?logo=github&logoColor=white" alt="Code" /></a>
   <img src="https://komarev.com/ghpvc/?username=Lorenzo-0-0&repo=CompassAD-Intent-Driven-3D-Affordance-Grounding-in-Functionally-Competing-Objects&color=blueviolet" alt="Visitors" />
 </p>
@@ -33,10 +33,14 @@
   <img src="./images/teaser.png" alt="CompassAD teaser figure" width="88%" />
 </p>
 
+<p align="center">
+  <em>The proposed task of <b>Intent-Driven Confusable Affordance Grounding</b>. Given a multi-object point cloud and a natural language query describing an intended action, the goal is to predict a per-point affordance mask. The same composition can yield different targets depending on the query intent.</em>
+</p>
+
 <table align="center" width="88%">
   <tr>
     <td valign="top">
-      <b>Abstract.</b> When told to "cut the apple," a robot must choose the knife over nearby scissors, despite both objects affording the same cutting function. In real-world scenes, multiple objects may share identical affordances, yet only one is appropriate under the given task context. We call such cases confusing pairs. However, existing 3D affordance methods largely sidestep this challenge by evaluating isolated single objects, often with explicit category names provided in the query. We formalize Multi-Object Affordance Grounding under Intent-Driven Instructions, a new 3D affordance setting that requires predicting a per-point affordance mask on the correct object within a cluttered multi-object point cloud, conditioned on implicit natural language intent. To study this problem, we construct CompassAD, the first benchmark centered on implicit intent in confusable multi-object scenes. It comprises 30 confusing object pairs spanning 16 affordance types, 6,422 scenes, and 88K+ query-answer pairs. Furthermore, we propose CompassNet, a framework that incorporates two dedicated modules tailored to this task. Instance-bounded Cross Injection (ICI) constrains language-geometry alignment within object boundaries to prevent cross-object semantic leakage. Bi-level Contrastive Refinement (BCR) enforces discrimination at both geometric-group and point levels, sharpening distinctions between target and confusable surfaces. Extensive experiments demonstrate state-of-the-art results on both seen and unseen queries, and deployment on a robotic manipulator confirms effective transfer to real-world grasping in confusing multi-object scenes.
+      <b>Abstract.</b> When told to "cut the cake," a robot must choose the knife over nearby scissors, despite both objects affording the same cutting function. In real-world scenes, multiple objects may share identical affordances, yet only one is appropriate under the given task context. We call such cases <em>confusing pairs</em>. However, existing 3D affordance methods largely sidestep this challenge by evaluating isolated single objects, often with explicit category names provided in the query. We formalize <b>Intent-Driven Confusable Affordance Grounding</b>, a new 3D affordance setting that requires predicting a per-point affordance mask on the correct object within a multi-object point cloud, conditioned on implicit natural language intent. To study this problem, we construct <b>CompassAD</b>, the first benchmark centered on implicit intent in confusing multi-object compositions. It comprises 30 confusing object pairs spanning 16 affordance types, 6,422 compositions, and 88K+ query-answer pairs. Furthermore, we propose <b>CompassNet</b>, a framework that incorporates two dedicated modules tailored to this task. <em>Instance-bounded Cross Injection</em> (ICI) constrains language-geometry alignment within object boundaries to prevent cross-object semantic leakage. <em>Bi-level Contrastive Refinement</em> (BCR) enforces discrimination at both geometric-group and point levels, sharpening distinctions between target and confusable surfaces. Extensive experiments demonstrate state-of-the-art results on both seen and unseen queries, and deployment on a robotic manipulator confirms effective transfer to real-world grasping in confusing multi-object compositions.
       <br /><br />
       <img src="./images/marslab.png" alt="MARS Lab Logo" width="100" align="right" />
       <b>Correspondence:</b> Jianfei Yang at <a href="mailto:jianfei.yang@ntu.edu.sg">jianfei.yang@ntu.edu.sg</a> &amp; Gen Li at <a href="mailto:gen.li@ntu.edu.sg">gen.li@ntu.edu.sg</a>
@@ -52,7 +56,7 @@
   <img src="./images/method.png" alt="CompassNet architecture" width="88%" />
 </p>
 
-**Overall architecture of CompassNet.** Given 3D point clouds of a scene and a human query, Uni3D and RoBERTa are applied to produce per-point features and text features. We then propose Instance-bounded Cross Injection (ICI), which enhances both region- and point-level representations through coarse-to-fine query interactions while preventing cross-object leakage of query semantics. Bi-level Contrastive Refinement (BCR) is further introduced to explicitly identify the functional regions that best match the query and provide additional supervision for highly ambiguous point-level affordances.
+**Overall architecture of CompassNet.** Given a multi-object point cloud and a natural-language query, Uni3D and RoBERTa produce per-point and text features. **Instance-bounded Cross Injection (ICI)** confines region–language interaction within each instance via (i) instance-bounded grouping, (ii) region-language cross-attention with a learnable background token, and (iii) gated propagation back to points — preventing cross-object semantic leakage by construction. **Bi-Level Contrastive Refinement (BCR)** adds two training-only contrastive losses: *TG-Softmax* ranks the in-object region that best matches the intent, while *TP-HardNeg* suppresses high-scoring negatives on confusable surfaces. BCR adds no parameters or computation at inference.
 
 ---
 
@@ -62,6 +66,8 @@
   <img src="./images/dataset.png" alt="CompassAD benchmark overview" width="88%" />
 </p>
 
+**Overview of the CompassAD benchmark.** *(a)* Affordance concept distribution. *(b)* Object category distribution. *(c)* Hierarchy of confusing pairs grouped by target affordance type. *(d)* Source breakdown of the collected 3D object instances. *(e)* Confusion matrix between affordance and object categories, highlighting the many-to-many nature of real-world affordances. CompassAD comprises **30 confusing pairs · 16 affordance types · 6,422 compositions · 87,964 intent-driven queries**, spanning 105 object categories.
+
 ---
 
 ## :art: Qualitative Comparison
@@ -69,6 +75,8 @@
 <p align="center">
   <img src="./images/qualitative.png" alt="Qualitative comparison on CompassAD" width="88%" />
 </p>
+
+**Qualitative comparison on CompassAD.** Each triplet shows ground truth (GT), CompassNet (Ours), and GLANCE (SOTA). *Left:* the same composition queried with different intents activates different objects/regions (chair seat vs. bed surface), illustrating query-dependent disambiguation. *Right:* diverse confusing pairs (knife vs. scissors, skateboard vs. surfboard, kettle vs. cup). Red denotes higher affordance probability.
 
 ---
 
@@ -78,21 +86,42 @@
   <img src="./images/robot.png" alt="Real-world robotic grasping" width="88%" />
 </p>
 
+**Real-world robotic grasping in confusing multi-object compositions.** Each row shows the captured scene, CompassNet's affordance prediction on the reconstructed point cloud (red = high probability), and the executed grasp. *Top:* a cutting query selects the knife over scissors. *Bottom:* a hammering query selects the hammer over distractors. CompassNet generalises to real-world grasping from a single RGB image: Grounded-SAM segments object instances, Depth Anything V2 estimates depth, CompassNet predicts per-point affordances, and AnyGrasp produces grasp poses weighted by predicted affordance.
+
 ---
 
 ## :sparkles: More Qualitative Results
 
 <p align="center">
-  <img src="./images/more_results_1.png" alt="Additional qualitative results 1" width="70%" />
+  <img src="./images/more_results_1.png" alt="Additional qualitative results 1" width="88%" />
 </p>
 
 <p align="center">
-  <img src="./images/more_results_2.png" alt="Additional qualitative results 2" width="70%" />
+  <img src="./images/more_results_2.png" alt="Additional qualitative results 2" width="88%" />
 </p>
 
 <p align="center">
-  <img src="./images/more_results_3.png" alt="Additional qualitative results 3" width="70%" />
+  <img src="./images/more_results_3.png" alt="Additional qualitative results 3" width="88%" />
 </p>
+
+---
+
+## :bookmark_tabs: Citation
+
+If you find CompassAD useful in your research, please consider citing:
+
+```bibtex
+@article{Li2026CompassAD,
+  title          = {CompassAD: Intent-Driven 3D Affordance Grounding in Functionally Competing Objects},
+  author         = {Li, Jingliang and Jia, Jindou and An, Tuo and Zhou, Chuhao and
+                    Chen, Xiangyu and Shan, Shilin and Ma, Boyu and Lyu, Bofan and
+                    Li, Gen and Yang, Jianfei},
+  year           = {2026},
+  eprint         = {2604.02060},
+  archivePrefix  = {arXiv},
+  primaryClass   = {cs.CV}
+}
+```
 
 ---
 
