@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#1E40AF" />
+<title>CompassAD: Intent-Driven 3D Affordance Grounding in Functionally Competing Objects</title>
+<meta name="description" content="CompassAD is a new benchmark and method (CompassNet = ICI + BCR) for intent-driven 3D affordance grounding in multi-object compositions where multiple objects share the same affordance. 30 confusing pairs, 16 affordance types, 6,422 compositions, 88K+ intent-driven queries. State-of-the-art on seen and unseen splits; deployed on a real robotic manipulator." />
+<meta name="keywords" content="CompassAD, CompassNet, 3D affordance, affordance grounding, point cloud, multi-object, confusing pairs, robotic grasping, intent-driven, MARS Lab, NTU, Jingliang Li, Jianfei Yang, ICI, BCR, Instance-bounded Cross Injection, Bi-Level Contrastive Refinement" />
+<meta name="author" content="Jingliang Li, Jindou Jia, Tuo An, Chuhao Zhou, Xiangyu Chen, Shilin Shan, Boyu Ma, Bofan Lyu, Gen Li, Jianfei Yang" />
+<meta name="robots" content="index, follow" />
+<meta name="googlebot" content="index, follow" />
+<link rel="canonical" href="https://lorenzo-0-0.github.io/CompassAD-Intent-Driven-3D-Affordance-Grounding-in-Functionally-Competing-Objects/" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lorenzo-0-0.github.io/CompassAD-Intent-Driven-3D-Affordance-Grounding-in-Functionally-Competing-Objects/" />
+<meta property="og:title" content="CompassAD: Intent-Driven 3D Affordance Grounding in Functionally Competing Objects" />
+<meta property="og:description" content="A benchmark and method for resolving affordance ambiguity among functionally competing objects. State-of-the-art on seen/unseen splits; validated on a real robot arm." />
+<meta property="og:image" content="https://lorenzo-0-0.github.io/CompassAD-Intent-Driven-3D-Affordance-Grounding-in-Functionally-Competing-Objects/assets/teaser-hero.png" />
+<meta property="og:site_name" content="CompassAD Project Page" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="CompassAD: Intent-Driven 3D Affordance Grounding" />
+<meta name="twitter:description" content="A benchmark and method for affordance disambiguation in confusing multi-object compositions. Real-robot validated." />
+<meta name="twitter:image" content="https://lorenzo-0-0.github.io/CompassAD-Intent-Driven-3D-Affordance-Grounding-in-Functionally-Competing-Objects/assets/teaser-hero.png" />
+
+<!-- Google Scholar citation meta -->
+<meta name="citation_title" content="CompassAD: Intent-Driven 3D Affordance Grounding in Functionally Competing Objects" />
+<meta name="citation_author" content="Li, Jingliang" />
+<meta name="citation_author" content="Jia, Jindou" />
+<meta name="citation_author" content="An, Tuo" />
+<meta name="citation_author" content="Zhou, Chuhao" />
+<meta name="citation_author" content="Chen, Xiangyu" />
+<meta name="citation_author" content="Shan, Shilin" />
+<meta name="citation_author" content="Ma, Boyu" />
+<meta name="citation_author" content="Lyu, Bofan" />
+<meta name="citation_author" content="Li, Gen" />
+<meta name="citation_author" content="Yang, Jianfei" />
+<meta name="citation_publication_date" content="2026" />
+<meta name="citation_arxiv_id" content="2604.02060" />
+<meta name="citation_pdf_url" content="https://arxiv.org/pdf/2604.02060" />
+
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+
+<!-- Structured data: ScholarlyArticle (Google rich result) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ScholarlyArticle",
+  "headline": "CompassAD: Intent-Driven 3D Affordance Grounding in Functionally Competing Objects",
+  "name": "CompassAD: Intent-Driven 3D Affordance Grounding in Functionally Competing Objects",
+  "author": [
+    {"@type": "Person", "name": "Jingliang Li"},
+    {"@type": "Person", "name": "Jindou Jia", "url": "https://jiajindou.github.io/"},
+    {"@type": "Person", "name": "Tuo An", "url": "https://morpheus-an.github.io/"},
+    {"@type": "Person", "name": "Chuhao Zhou", "url": "https://chuhaozhou99.github.io/Chuhao-Zhou/"},
+    {"@type": "Person", "name": "Xiangyu Chen", "url": "https://xyc0212.github.io/"},
+    {"@type": "Person", "name": "Shilin Shan", "url": "https://shanshilin.github.io/"},
+    {"@type": "Person", "name": "Boyu Ma", "url": "https://ma-boyu.github.io/"},
+    {"@type": "Person", "name": "Bofan Lyu"},
+    {"@type": "Person", "name": "Gen Li", "url": "https://reagan1311.github.io/"},
+    {"@type": "Person", "name": "Jianfei Yang", "url": "https://marsyang.site/"}
+  ],
+  "affiliation": {
+    "@type": "Organization",
+    "name": "MARS Lab, Nanyang Technological University",
+    "url": "https://marsyang.site/"
+  },
+  "datePublished": "2026",
+  "image": "https://lorenzo-0-0.github.io/CompassAD-Intent-Driven-3D-Affordance-Grounding-in-Functionally-Competing-Objects/assets/teaser-hero.png",
+  "url": "https://lorenzo-0-0.github.io/CompassAD-Intent-Driven-3D-Affordance-Grounding-in-Functionally-Competing-Objects/",
+  "abstract": "When told to 'cut the cake,' a robot must choose the knife over nearby scissors, despite both objects affording the same cutting function. We formalize Intent-Driven Confusable Affordance Grounding and construct CompassAD, the first benchmark centered on implicit intent in confusing multi-object compositions. We propose CompassNet integrating Instance-bounded Cross Injection (ICI) and Bi-Level Contrastive Refinement (BCR).",
+  "keywords": "3D affordance grounding, point cloud, multi-object, intent-driven, robotic manipulation, confusing pairs",
+  "sameAs": "https://arxiv.org/abs/2604.02060"
+}
+</script>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,700;0,9..144,800;0,9..144,900;1,9..144,400;1,9..144,500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<!-- Tailwind Play CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ink: '#0A0A0A',
+          paper: '#FFFFFF',
+          'paper-soft': '#FAFAFA',
+          'paper-tint': '#F6F7F9',
+          mute: '#6B7280',
+          'mute-soft': '#9CA3AF',
+          rule: '#E5E7EB',
+          blue: '#1E40AF',
+          'blue-soft': '#3B82F6',
+          'blue-tint': '#EFF3FB',
+          red: '#C73E1D',
+          'red-soft': '#E85A3C',
+          gold: '#B89968',
+          'gold-soft': '#D4B988',
+          cyan: '#5DCEC8',
+          'cyan-deep': '#0E8D86',
+          'cyan-tint': '#E8F7F6',
+          purple: '#9B8FD8',
+          'purple-deep': '#6952B8',
+          'purple-tint': '#F0EDFA',
+        },
+        fontFamily: {
+          display: ['Fraunces', 'serif'],
+          serif: ['"Source Serif 4"', 'Georgia', 'serif'],
+          sans: ['Inter', 'system-ui', 'sans-serif'],
+          mono: ['"JetBrains Mono"', 'monospace'],
+        },
+        maxWidth: { prose: '680px', content: '1180px', narrow: '900px' },
+      },
+    },
+  };
+</script>
+<link rel="stylesheet" href="styles.css" />
+</head>
+
+<body class="bg-white text-ink font-serif antialiased">
+
+<!-- ====================================================================== -->
+<!-- 0 · STICKY NAV — light, minimal                                          -->
+<!-- ====================================================================== -->
+<nav id="nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 -translate-y-full">
+  <div class="bg-white/90 backdrop-blur-md border-b border-rule">
+    <div class="max-w-content mx-auto px-6 lg:px-10 h-14 flex items-center justify-between">
+      <a href="#hero" class="flex items-center gap-2 group">
+        <svg viewBox="0 0 24 24" class="w-4 h-4 text-blue" fill="currentColor"><polygon points="12,2 14,11 12,12 10,11"/><polygon points="12,22 10,13 12,12 14,13" opacity="0.6"/><polygon points="22,12 13,10 12,12 13,14" opacity="0.8"/><polygon points="2,12 11,14 12,12 11,10" opacity="0.8"/></svg>
+        <span class="font-display font-bold text-ink tracking-tight text-base">Compass<span class="text-blue">AD</span></span>
+      </a>
+      <div class="hidden md:flex items-center gap-7 text-xs smallcaps font-sans text-mute">
+        <a href="#abstract" class="hover:text-blue transition-colors">Abstract</a>
+        <a href="#task" class="hover:text-blue transition-colors">Task</a>
+        <a href="#dataset" class="hover:text-blue transition-colors">Dataset</a>
+        <a href="#method" class="hover:text-blue transition-colors">Method</a>
+        <a href="#results" class="hover:text-blue transition-colors">Results</a>
+        <a href="#robot" class="hover:text-blue transition-colors">Robot</a>
+        <a href="#bibtex" class="hover:text-blue transition-colors">Cite</a>
+      </div>
+      <button id="menuBtn" class="md:hidden text-ink p-2" aria-label="Open menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+      </button>
+    </div>
+    <div id="mobileMenu" class="md:hidden hidden border-t border-rule bg-white">
+      <div class="px-6 py-4 flex flex-col gap-3 text-sm smallcaps font-sans text-mute">
+        <a href="#abstract" class="py-1">Abstract</a>
+        <a href="#task" class="py-1">Task</a>
+        <a href="#dataset" class="py-1">Dataset</a>
+        <a href="#method" class="py-1">Method</a>
+        <a href="#results" class="py-1">Results</a>
+        <a href="#robot" class="py-1">Robot</a>
+        <a href="#bibtex" class="py-1">Cite</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ====================================================================== -->
+<!-- 1 · HERO — Academic / Editorial Restraint                                -->
+<!-- ====================================================================== -->
+<section id="hero" class="relative pt-12 lg:pt-14 pb-20 lg:pb-24 px-6 lg:px-10" style="background: linear-gradient(180deg, #EEF2FB 0%, #F5F7FB 45%, #FFFFFF 100%);">
+  <div class="max-w-narrow mx-auto text-center">
+
+    <!-- Institution logos: NTU bigger, MARS Lab smaller, visually balanced -->
+    <div class="flex items-center justify-center gap-10 lg:gap-14 mb-7">
+      <a href="https://www.ntu.edu.sg/" target="_blank" rel="noopener" class="inline-block transition-opacity hover:opacity-80">
+        <img src="assets/logo-ntu.png" alt="Nanyang Technological University, Singapore" class="h-[88px] lg:h-[100px] w-auto" />
+      </a>
+      <span class="w-px h-14 lg:h-16 bg-rule" aria-hidden="true"></span>
+      <a href="https://marsyang.site/" target="_blank" rel="noopener" class="inline-block transition-opacity hover:opacity-80">
+        <img src="assets/logo-marslab.png" alt="MARS Lab" class="h-[68px] lg:h-[76px] w-auto" />
+      </a>
+    </div>
+
+    <!-- Display title (slightly smaller, clean) -->
+    <h1 class="font-display font-bold text-ink leading-[0.95] mb-7 mx-auto"
+        style="font-size: clamp(2.4rem, 5.6vw, 4.6rem); letter-spacing: -0.03em;">
+      Compass<span class="text-blue">AD</span>
+    </h1>
+
+    <!-- Subtitle (IBM Plex Serif — formal American, high readability) -->
+    <p class="text-ink mb-12 max-w-4xl mx-auto leading-[1.25]"
+       style="font-family: 'IBM Plex Serif', 'Source Serif 4', Georgia, serif; font-size: clamp(1.75rem, 2.85vw, 2.65rem); font-weight: 700; letter-spacing: -0.012em;">
+      Intent-Driven 3D Affordance Grounding<br class="hidden sm:block"/>
+      in Functionally Competing Objects
+    </p>
+
+    <!-- Authors -->
+    <p class="font-sans text-[1.05rem] lg:text-[1.08rem] text-ink/90 mb-3 leading-[1.9] max-w-3xl mx-auto" style="letter-spacing:-0.005em;">
+      <a class="author-link" href="https://github.com/Lorenzo-0-0" target="_blank" rel="noopener">Jingliang Li</a>,
+      <a class="author-link" href="https://jiajindou.github.io/" target="_blank" rel="noopener">Jindou Jia</a>,
+      <a class="author-link" href="https://morpheus-an.github.io/" target="_blank" rel="noopener">Tuo An</a>,
+      <a class="author-link" href="https://chuhaozhou99.github.io/Chuhao-Zhou/" target="_blank" rel="noopener">Chuhao Zhou</a>,
+      <a class="author-link" href="https://xyc0212.github.io/" target="_blank" rel="noopener">Xiangyu Chen</a>,
+      <a class="author-link" href="https://shanshilin.github.io/" target="_blank" rel="noopener">Shilin Shan</a>,
+      <a class="author-link" href="https://ma-boyu.github.io/" target="_blank" rel="noopener">Boyu Ma</a>,
+      <span class="author-link no-link">Bofan Lyu</span>,
+      <a class="author-link" href="https://reagan1311.github.io/" target="_blank" rel="noopener">Gen Li<sup class="text-red ml-0.5">†</sup></a>,
+      <a class="author-link" href="https://marsyang.site/" target="_blank" rel="noopener">Jianfei Yang<sup class="text-red ml-0.5">†</sup></a>
+    </p>
+    <p class="font-sans text-[0.88rem] text-mute mb-10">
+      MARS Lab, Nanyang Technological University, Singapore
+      &nbsp;&middot;&nbsp;
+      <span class="text-red">†</span> Corresponding Authors
+    </p>
+
+    <!-- Refined gold hairline -->
+    <span class="hero-rule mb-10"></span>
+
+    <!-- Buttons -->
+    <div class="flex flex-wrap items-center justify-center gap-3">
+      <a href="https://arxiv.org/pdf/2604.02060" target="_blank" rel="noopener" class="btn-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M14 3v4a1 1 0 0 0 1 1h4M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2Z"/></svg>
+        Paper
+      </a>
+      <a href="https://arxiv.org/abs/2604.02060" target="_blank" rel="noopener" class="btn-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M9 17v-6a2 2 0 0 1 2-2h6M9 11l3-3-3-3M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+        arXiv
+      </a>
+      <a href="https://github.com/Lorenzo-0-0/CompassAD-Intent-Driven-3D-Affordance-Grounding-in-Functionally-Competing-Objects" target="_blank" rel="noopener" class="btn-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.58v-2.1c-3.34.73-4.04-1.41-4.04-1.41-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5 1 .11-.78.42-1.3.76-1.6-2.66-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.17 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.66 1.65.25 2.87.12 3.17.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.49 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.83.58A12 12 0 0 0 12 .5Z"/></svg>
+        Code
+      </a>
+      <!-- TODO: Replace href with dataset URL once released -->
+      <a href="#" class="btn-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.66 3.58 3 8 3s8-1.34 8-3V6M4 12v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6"/></svg>
+        Dataset
+      </a>
+      <a href="#bibtex" class="btn-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M3 7h6l2 2h10v10a2 2 0 0 1-2 2H3V7Z"/></svg>
+        BibTeX
+      </a>
+    </div>
+  </div>
+
+  <!-- Contained teaser figure (NOT full-bleed) -->
+  <div class="max-w-content mx-auto mt-16 lg:mt-20">
+    <figure class="figure-frame">
+      <img src="assets/teaser-hero.png" alt="The proposed task: given a multi-object point cloud and a natural language query describing an intended action, predict a per-point affordance mask. The same composition can yield different targets depending on the query intent." />
+    </figure>
+    <figcaption class="font-serif italic text-mute text-sm mt-4 max-w-3xl mx-auto text-center leading-relaxed px-4">
+      Given a multi-object point cloud and a natural-language query describing an intended action, the goal is to predict a <span class="text-red font-medium not-italic">per-point affordance mask</span> on the correct object. The same composition yields different targets depending on the query intent — and abstains when no object can fulfill it.
+    </figcaption>
+  </div>
+</section>
+
+<!-- ====================================================================== -->
+<!-- 2 · PULL-QUOTE — the hook (light, restrained)                            -->
+<!-- ====================================================================== -->
+<section class="bg-paper-soft py-20 lg:py-28 px-6 border-y border-rule">
+  <div class="max-w-narrow mx-auto text-center reveal">
+    <p class="font-display italic text-ink leading-[1.25]"
+       style="font-size: clamp(1.35rem, 2.8vw, 2.1rem); letter-spacing: -0.012em;">
+      "When told to <span class="text-red not-italic font-normal">cut the cake</span>," a robot must choose the knife over nearby scissors — despite both objects affording the same cutting function.
+    </p>
+  </div>
+</section>
+
+<!-- ====================================================================== -->
+<!-- 3 · ABSTRACT                                                            -->
+<!-- ====================================================================== -->
+<section id="abstract" class="py-20 lg:py-28 px-6 lg:px-10 bg-white">
+  <div class="max-w-content mx-auto">
+    <div class="section-number mb-10 reveal">№ 01 · Abstract</div>
+
+    <div class="grid lg:grid-cols-[2fr_1fr] gap-12 lg:gap-20">
+      <!-- Prose column -->
+      <div class="reveal max-w-prose">
+        <p class="drop-cap text-ink/90 text-[1.05rem] leading-[1.75] mb-5">
+          In real-world scenes, multiple objects may share identical affordances, yet only one is appropriate under the given task context. We call such cases <em>confusing pairs</em>. Existing 3D affordance methods largely sidestep this challenge by evaluating isolated single objects, often with explicit category names provided in the query.
+        </p>
+        <p class="text-ink/90 text-[1.05rem] leading-[1.75] mb-5">
+          We formalize <strong class="text-blue">Intent-Driven Confusable Affordance Grounding</strong>, a 3D setting that requires predicting a per-point affordance mask on the correct object within a multi-object point cloud, conditioned on implicit natural-language intent. To study this problem, we construct <strong class="text-blue">CompassAD</strong>, the first benchmark centered on implicit intent in confusing multi-object compositions.
+        </p>
+        <p class="text-ink/90 text-[1.05rem] leading-[1.75]">
+          We further propose <strong class="text-blue">CompassNet</strong>, a framework with two dedicated modules. <em><span class="text-cyan-deep">Instance-bounded Cross Injection</span></em> (ICI) constrains language–geometry alignment within object boundaries to prevent cross-object semantic leakage. <em><span class="text-purple-deep">Bi-Level Contrastive Refinement</span></em> (BCR) enforces discrimination at both geometric-group and point levels, sharpening distinctions between target and confusable surfaces. Experiments demonstrate state-of-the-art results on both seen and unseen queries, and deployment on a robotic manipulator confirms effective real-world transfer.
+        </p>
+      </div>
+
+      <!-- Sticky claim cards (light, restrained) -->
+      <aside class="lg:sticky lg:top-24 h-fit space-y-4 reveal reveal-delay-1">
+        <div class="border-l-2 border-blue pl-4 py-1">
+          <div class="smallcaps text-[0.65rem] tracking-[0.25em] text-blue mb-1">01 · Task</div>
+          <p class="font-display font-medium text-ink text-base leading-snug">Intent-driven 3D affordance grounding under functional confusion.</p>
+        </div>
+        <div class="border-l-2 border-gold pl-4 py-1">
+          <div class="smallcaps text-[0.65rem] tracking-[0.25em] text-gold mb-1">02 · Benchmark</div>
+          <p class="font-display font-medium text-ink text-base leading-snug">30 confusing pairs &middot; 16 affordance types &middot; 88K queries.</p>
+        </div>
+        <div class="border-l-2 border-cyan pl-4 py-1">
+          <div class="smallcaps text-[0.65rem] tracking-[0.25em] text-cyan-deep mb-1">03 · Method</div>
+          <p class="font-display font-medium text-ink text-base leading-snug">CompassNet &mdash; ICI for boundary alignment, BCR for discrimination.</p>
+        </div>
+        <div class="border-l-2 border-red pl-4 py-1">
+          <div class="smallcaps text-[0.65rem] tracking-[0.25em] text-red mb-1">04 · Impact</div>
+          <p class="font-display font-medium text-ink text-base leading-snug">+28.3% aIoU over prior SOTA, validated on a real robot arm.</p>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================================== -->
+<!-- 4 · BY THE NUMBERS — light, restrained                                   -->
+<!-- ====================================================================== -->
+<section class="bg-paper-soft border-y border-rule py-14 lg:py-16">
+  <div class="max-w-content mx-auto px-6 lg:px-10">
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-y-10 gap-x-8 text-center lg:text-left">
+      <div class="reveal">
+        <div class="stat-num text-blue text-4xl lg:text-5xl mb-2" data-counter="30">0</div>
+        <div class="smallcaps text-[0.62rem] tracking-[0.2em] text-mute">Confusing<br/>pairs</div>
+      </div>
+      <div class="reveal reveal-delay-1">
+        <div class="stat-num text-blue text-4xl lg:text-5xl mb-2" data-counter="16">0</div>
+        <div class="smallcaps text-[0.62rem] tracking-[0.2em] text-mute">Affordance<br/>types</div>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <div class="stat-num text-blue text-4xl lg:text-5xl mb-2" data-counter="6422">0</div>
+        <div class="smallcaps text-[0.62rem] tracking-[0.2em] text-mute">Multi-object<br/>compositions</div>
+      </div>
+      <div class="reveal reveal-delay-3">
+        <div class="stat-num text-blue text-4xl lg:text-5xl mb-2" data-counter="88" data-suffix="K+">0</div>
+        <div class="smallcaps text-[0.62rem] tracking-[0.2em] text-mute">Intent-driven<br/>queries</div>
+      </div>
+      <div class="reveal reveal-delay-3">
+        <div class="stat-num text-red text-4xl lg:text-5xl mb-2" data-counter="28.3" data-prefix="+" data-suffix="%">0</div>
+        <div class="smallcaps text-[0.62rem] tracking-[0.2em] text-mute">aIoU<br/>gain vs SOTA</div>
+      </div>
+      <div class="reveal reveal-delay-3">
+        <div class="stat-num text-red text-4xl lg:text-5xl mb-2" data-counter="24.3" data-prefix="+" data-suffix="%">0</div>
+        <div class="smallcaps text-[0.62rem] tracking-[0.2em] text-mute">SIM<br/>gain vs SOTA</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================================== -->
+<!-- 5 · TASK                                                                -->
+<!-- ====================================================================== -->
+<section id="task" class="py-20 lg:py-28 px-6 lg:px-10 bg-white">
+  <div class="max-w-content mx-auto">
+    <div class="section-number mb-8 reveal">№ 02 · The Task</div>
+
+    <div class="grid lg:grid-cols-[1.1fr_1fr] gap-12 items-start">
+      <div class="reveal max-w-prose">
+        <p class="text-ink/90 text-[1.05rem] leading-[1.75] mb-5">
+          Kitchens, workshops, and offices present multiple objects in close proximity. A knife and scissors both afford <em>cutting</em>. A skateboard and surfboard both afford <em>riding</em>. Shared affordance renders the target ambiguous from appearance alone — correct selection must be conditioned on <strong class="text-blue">task intent</strong>.
+        </p>
+
+        <p class="text-ink/90 text-[1.05rem] leading-[1.75] mb-8">
+          Given a multi-object point cloud and a natural-language query describing an intended action, our task is to predict a per-point affordance mask on the correct object, disambiguate confusable alternatives, and <strong class="text-red">abstain</strong> when no object can fulfill the intent.
+        </p>
+
+        <!-- Math card -->
+        <div class="bg-paper-soft border border-rule rounded-md p-5 font-mono text-sm">
+          <div class="smallcaps text-[0.65rem] text-blue tracking-[0.2em] mb-3 font-sans">Formulation</div>
+          <div class="text-ink leading-relaxed">
+            <span class="text-red">ŷ</span> = <span class="text-blue">f<sub>θ</sub></span>(<span class="text-cyan-deep">𝒫</span>, <span class="text-purple-deep">𝒬</span>) ∈ [0,1]<sup>N</sup>
+          </div>
+          <div class="text-mute text-xs mt-3 font-serif italic">
+            Point cloud 𝒫 + query 𝒬 → per-point affordance probability ŷ.<br/>Two queries 𝒬<sub>a</sub> ≠ 𝒬<sub>b</sub> over the same 𝒫 yield different masks.
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal reveal-delay-1">
+        <figure class="figure-frame">
+          <img src="assets/teaser-hero.png" alt="Task teaser: same composition, different intents activate different objects" loading="lazy" />
+        </figure>
+        <figcaption class="text-mute italic text-sm mt-3 px-1 leading-relaxed">
+          For a scissors–knife pair on a table: "prepare vegetable slices" activates the knife blade; "cut paper" selects the scissors. For "play music," no activation occurs.
+        </figcaption>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================================== -->
+<!-- 6 · METHOD — moved before Dataset (§03)                                  -->
+<!-- ====================================================================== -->
+<section id="method" class="py-20 lg:py-28 px-6 lg:px-10 bg-paper-soft border-y border-rule">
+  <div class="max-w-content mx-auto">
+    <div class="section-number mb-10 reveal">№ 03 · Method</div>
+
+    <div class="reveal mb-14 max-w-3xl">
+      <h2 class="font-display font-bold text-ink text-3xl lg:text-5xl leading-[1.05] mb-3">
+        Compass<em class="text-blue not-italic">Net</em>.
+      </h2>
+      <p class="font-display italic text-mute text-lg">
+        <span class="text-cyan-deep not-italic font-medium">Instance-Bounded Cross Injection</span> &times; <span class="text-purple-deep not-italic font-medium">Bi-Level Contrastive Refinement</span>.
+      </p>
+    </div>
+
+    <figure class="reveal reveal-delay-1 mb-20">
+      <img src="assets/method-architecture.png" alt="CompassNet architecture: instance-bounded grouping, region-language cross-attention with background token, gated propagation, and bi-level contrastive refinement" loading="lazy" class="w-full h-auto" />
+      <figcaption class="text-mute italic text-sm mt-4 max-w-4xl leading-relaxed">
+        <span class="text-cyan-deep not-italic font-medium">ICI</span> confines region–language interaction within each instance via (i) instance-bounded grouping, (ii) region-language cross-attention with a learnable background token, and (iii) gated propagation back to points. <span class="text-purple-deep not-italic font-medium">BCR</span> adds two training-only contrastive losses: TG-Softmax ranks the in-object region best matching the intent, and TP-HardNeg suppresses high-scoring negatives on confusable surfaces.
+      </figcaption>
+    </figure>
+
+    <div class="grid lg:grid-cols-2 gap-8 lg:gap-12">
+      <!-- ICI block — cyan accent -->
+      <div class="reveal bg-white border border-rule rounded-md ici-accent p-6 lg:p-8">
+        <div class="flex items-baseline gap-3 mb-4">
+          <span class="ici-tag">ICI</span>
+          <span class="font-display italic text-ink text-lg lg:text-xl">Instance-Bounded Cross Injection</span>
+        </div>
+        <p class="text-ink/85 leading-[1.7] mb-6 text-[0.95rem]">
+          Cross-modal fusion is computed independently <strong>within each instance</strong>, so text cues cannot diffuse to competing surfaces.
+        </p>
+        <ol class="space-y-4">
+          <li class="border-l-2 border-cyan pl-4">
+            <div class="smallcaps text-[0.65rem] tracking-[0.2em] text-cyan-deep mb-1">Step 1</div>
+            <h4 class="font-display font-medium text-ink text-base mb-1">Instance-bounded grouping</h4>
+            <p class="text-ink/75 text-sm leading-relaxed">Radius-graph connected components assign each point an instance label; FPS selects region centers within each instance only.</p>
+          </li>
+          <li class="border-l-2 border-cyan pl-4">
+            <div class="smallcaps text-[0.65rem] tracking-[0.2em] text-cyan-deep mb-1">Step 2</div>
+            <h4 class="font-display font-medium text-ink text-base mb-1">Region–language cross-attention</h4>
+            <p class="text-ink/75 text-sm leading-relaxed">Per-instance regions attend to text tokens augmented with a learnable <em>background token</em> — a sink for content no token can explain, enabling correct abstention.</p>
+          </li>
+          <li class="border-l-2 border-cyan pl-4">
+            <div class="smallcaps text-[0.65rem] tracking-[0.2em] text-cyan-deep mb-1">Step 3</div>
+            <h4 class="font-display font-medium text-ink text-base mb-1">Gated region-to-point propagation</h4>
+            <p class="text-ink/75 text-sm leading-relaxed">Each point inverse-distance-pools from its <em>k</em><sub>p</sub>=3 nearest enhanced regions; a multiplicative gate routes language back to points without injecting activations from scratch.</p>
+          </li>
+        </ol>
+      </div>
+
+      <!-- BCR block — purple accent -->
+      <div class="reveal reveal-delay-1 bg-white border border-rule rounded-md bcr-accent p-6 lg:p-8">
+        <div class="flex items-baseline gap-3 mb-4">
+          <span class="bcr-tag">BCR</span>
+          <span class="font-display italic text-ink text-lg lg:text-xl">Bi-Level Contrastive Refinement</span>
+        </div>
+        <p class="text-ink/85 leading-[1.7] mb-6 text-[0.95rem]">
+          Two complementary contrastive losses sharpen object selection and point-level discrimination. Both are <strong class="text-red">training-only</strong> — zero inference overhead.
+        </p>
+        <ol class="space-y-4">
+          <li class="border-l-2 border-purple pl-4">
+            <div class="smallcaps text-[0.65rem] tracking-[0.2em] text-purple-deep mb-1">Region · TG-Softmax</div>
+            <h4 class="font-display font-medium text-ink text-base mb-1">Rank in-object regions by intent</h4>
+            <p class="text-ink/75 text-sm leading-relaxed">Soft-label softmax ranks regions by affinity to the query; rewards regions whose points are most densely affordance-positive.</p>
+          </li>
+          <li class="border-l-2 border-purple pl-4">
+            <div class="smallcaps text-[0.65rem] tracking-[0.2em] text-purple-deep mb-1">Point · TP-HardNeg</div>
+            <h4 class="font-display font-medium text-ink text-base mb-1">Suppress confident false positives</h4>
+            <p class="text-ink/75 text-sm leading-relaxed">Smooth-max hard-negative mining enforces a margin between affordance points and the hardest negative on the wrong-object surface or same-object non-affordance region.</p>
+          </li>
+        </ol>
+
+        <div class="bg-purple-tint/60 border border-purple/30 rounded-sm p-4 mt-6">
+          <div class="smallcaps text-[0.62rem] tracking-[0.2em] text-purple-deep mb-1">No-Cost at Inference</div>
+          <p class="text-ink/85 text-sm leading-relaxed">
+            BCR backpropagates through ICI's representations during training but is dropped at inference. <strong>Zero added parameters or computation</strong> in the deployed model.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================================== -->
+<!-- 7 · DATASET — moved after Method (§04)                                   -->
+<!-- ====================================================================== -->
+<section id="dataset" class="py-20 lg:py-28 px-6 lg:px-10 bg-white">
+  <div class="max-w-content mx-auto">
+    <div class="section-number mb-10 reveal">№ 04 · Dataset</div>
+
+    <div class="reveal mb-12 max-w-prose">
+      <h2 class="font-display font-bold text-ink text-3xl lg:text-5xl leading-[1.05] mb-3">
+        A Benchmark of <em class="text-blue not-italic">Controlled Confusion</em>.
+      </h2>
+      <p class="font-display italic text-mute text-lg">
+        30 confusing pairs &middot; 16 affordance types &middot; 6,422 compositions &middot; 87,964 intent-driven queries.
+      </p>
+    </div>
+
+    <figure class="reveal reveal-delay-1 mb-14">
+      <img src="assets/dataset-overview.png" alt="Overview of the CompassAD benchmark: affordance distribution, category distribution, hierarchy of confusing pairs, source breakdown, and affordance–object confusion matrix" loading="lazy" class="w-full h-auto" />
+      <figcaption class="text-mute italic text-sm mt-4 max-w-3xl leading-relaxed">
+        Overview of the CompassAD benchmark. <strong class="text-ink not-italic font-medium">(a)</strong> Affordance concept distribution. <strong class="text-ink not-italic font-medium">(b)</strong> Object category distribution. <strong class="text-ink not-italic font-medium">(c)</strong> Hierarchy of confusing pairs grouped by target affordance type. <strong class="text-ink not-italic font-medium">(d)</strong> Source breakdown of the collected 3D object instances. <strong class="text-ink not-italic font-medium">(e)</strong> Confusion matrix between affordance and object categories.
+      </figcaption>
+    </figure>
+
+    <!-- 3-column breakdown -->
+    <div class="grid md:grid-cols-3 gap-8 lg:gap-14 reveal reveal-delay-2 pt-4 border-t border-rule">
+      <div>
+        <div class="smallcaps text-[0.65rem] tracking-[0.22em] text-blue mb-2 pt-6">01 &middot; Curation</div>
+        <h3 class="font-display font-medium text-ink text-xl mb-3">Pairs by design</h3>
+        <p class="text-ink/85 text-[0.95rem] leading-relaxed">
+          30 confusing pairs across 16 affordance types, sourced from synthetic CAD models and real-world scans. Each pair shares at least one target affordance and is functionally interchangeable.
+        </p>
+      </div>
+      <div>
+        <div class="smallcaps text-[0.65rem] tracking-[0.22em] text-gold mb-2 pt-6">02 &middot; Compositions</div>
+        <h3 class="font-display font-medium text-ink text-xl mb-3">Cluttered by construction</h3>
+        <p class="text-ink/85 text-[0.95rem] leading-relaxed">
+          Each composition pairs one confusing pair with up to two distractor objects (2–4 instances total). Randomized placement and permuted slots prevent positional shortcuts.
+        </p>
+      </div>
+      <div>
+        <div class="smallcaps text-[0.65rem] tracking-[0.22em] text-red mb-2 pt-6">03 &middot; Queries</div>
+        <h3 class="font-display font-medium text-ink text-xl mb-3">Intent-only language</h3>
+        <p class="text-ink/85 text-[0.95rem] leading-relaxed">
+          GPT-generated intent-driven queries with no object names. Includes positive, negative (for abstention), and unseen splits to evaluate language generalization.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================================== -->
+<!-- 8 · RESULTS — white bg, blue/red accents, NO carousel                    -->
+<!-- ====================================================================== -->
+<section id="results" class="py-20 lg:py-28 px-6 lg:px-10 bg-white">
+  <div class="max-w-content mx-auto">
+    <div class="section-number mb-10 reveal">№ 05 · Results</div>
+
+    <div class="reveal mb-12 max-w-3xl">
+      <h2 class="font-display font-bold text-ink text-3xl lg:text-5xl leading-[1.05] mb-3">
+        State-of-the-art on <em class="text-blue not-italic">seen and unseen</em> splits.
+      </h2>
+      <p class="font-display italic text-mute text-lg">
+        <span class="text-red not-italic font-medium">+4.02 aIoU</span> on Test-Seen &middot; <span class="text-red not-italic font-medium">+3.54 aIoU</span> on Test-Unseen vs. prior SOTA.
+      </p>
+    </div>
+
+    <!-- 8a · Main quantitative table -->
+    <div class="reveal reveal-delay-1 mb-20 overflow-x-auto">
+      <table class="results-table tabular-nums">
+        <thead>
+          <tr>
+            <th>Method</th>
+            <th class="text-left">Venue</th>
+            <th>aIoU&nbsp;↑</th>
+            <th>AUC&nbsp;↑</th>
+            <th>SIM&nbsp;↑</th>
+            <th>MAE&nbsp;↓</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="row-split"><td colspan="6">Test-Seen</td></tr>
+          <tr><td>3D-SPS</td><td>CVPR 2022</td><td>5.23</td><td>64.7</td><td>0.158</td><td>0.096</td></tr>
+          <tr><td>ReferTrans</td><td>NeurIPS 2021</td><td>5.81</td><td>66.3</td><td>0.171</td><td>0.093</td></tr>
+          <tr><td>ReLA</td><td>CVPR 2023</td><td>6.47</td><td>68.9</td><td>0.193</td><td>0.091</td></tr>
+          <tr><td>IAGNet</td><td>ICCV 2023</td><td>7.64</td><td>72.4</td><td>0.214</td><td>0.086</td></tr>
+          <tr><td>GREAT</td><td>CVPR 2025</td><td>9.23</td><td>75.7</td><td>0.237</td><td>0.082</td></tr>
+          <tr><td>PointRefer</td><td>CVPR 2024</td><td>10.52</td><td>79.3</td><td>0.260</td><td>0.079</td></tr>
+          <tr><td>GLANCE</td><td>ICCV 2025</td><td class="second">14.18</td><td class="second">87.5</td><td class="second">0.296</td><td class="second">0.077</td></tr>
+          <tr class="ours"><td><strong>CompassNet</strong></td><td><strong>Ours</strong></td><td class="best">18.20</td><td class="best">89.2</td><td class="best">0.368</td><td class="best">0.061</td></tr>
+
+          <tr class="row-split"><td colspan="6">Test-Unseen</td></tr>
+          <tr><td>3D-SPS</td><td>CVPR 2022</td><td>4.12</td><td>61.8</td><td>0.136</td><td>0.099</td></tr>
+          <tr><td>ReferTrans</td><td>NeurIPS 2021</td><td>4.58</td><td>63.5</td><td>0.148</td><td>0.096</td></tr>
+          <tr><td>ReLA</td><td>CVPR 2023</td><td>5.06</td><td>65.7</td><td>0.167</td><td>0.094</td></tr>
+          <tr><td>IAGNet</td><td>ICCV 2023</td><td>6.07</td><td>68.4</td><td>0.186</td><td>0.089</td></tr>
+          <tr><td>GREAT</td><td>CVPR 2025</td><td>7.31</td><td>72.0</td><td>0.209</td><td>0.085</td></tr>
+          <tr><td>PointRefer</td><td>CVPR 2024</td><td>8.47</td><td>75.8</td><td>0.232</td><td>0.082</td></tr>
+          <tr><td>GLANCE</td><td>ICCV 2025</td><td class="second">11.82</td><td class="second">85.2</td><td class="second">0.268</td><td class="second">0.075</td></tr>
+          <tr class="ours"><td><strong>CompassNet</strong></td><td><strong>Ours</strong></td><td class="best">15.36</td><td class="best">87.4</td><td class="best">0.339</td><td class="best">0.059</td></tr>
+        </tbody>
+      </table>
+      <p class="text-mute italic text-sm mt-4 max-w-3xl leading-relaxed">
+        All methods trained and evaluated under identical settings. <span class="text-red font-medium">Red bold</span> = best, <span class="second">underline</span> = second-best. aIoU is the primary metric.
+      </p>
+    </div>
+
+    <!-- 8b · Main qualitative -->
+    <div class="reveal mb-16">
+      <h3 class="font-display font-medium text-ink text-2xl mb-2">Qualitative Comparison</h3>
+      <p class="font-display italic text-mute text-base mb-6 max-w-3xl">Same composition, different intents → different activated objects and regions.</p>
+      <figure>
+        <img src="assets/qualitative-main.png" alt="Qualitative comparison: each triplet shows GT, CompassNet, and GLANCE on various confusing compositions" loading="lazy" class="w-full h-auto" />
+        <figcaption class="text-mute italic text-sm mt-4 max-w-4xl leading-relaxed">
+          Each triplet shows ground truth (GT), <span class="text-red not-italic font-medium">CompassNet</span> (Ours), and GLANCE (SOTA). Left: same composition queried with different intents activates different objects/regions (chair seat vs. bed surface). Right: diverse confusing pairs (knife/scissors, skateboard/surfboard, kettle/cup). Red denotes higher affordance probability.
+        </figcaption>
+      </figure>
+    </div>
+
+    <!-- 8d · Ablation (collapsible) -->
+    <details class="reveal group border-t border-rule pt-8">
+      <summary class="cursor-pointer flex items-center justify-between font-display font-medium text-ink text-2xl list-none">
+        <span>Ablation Study</span>
+        <span class="text-blue transition-transform group-open:rotate-45 text-3xl font-light">+</span>
+      </summary>
+      <p class="font-display italic text-mute text-base mt-2 mb-6 max-w-3xl">
+        Removing <span class="text-cyan-deep not-italic font-medium">ICI</span> drops aIoU by 2.96; removing <span class="text-purple-deep not-italic font-medium">BCR</span> drops by 1.50. Every sub-component contributes.
+      </p>
+      <div class="overflow-x-auto">
+        <table class="results-table tabular-nums max-w-3xl">
+          <thead>
+            <tr>
+              <th>Configuration</th>
+              <th>aIoU&nbsp;↑</th>
+              <th>AUC&nbsp;↑</th>
+              <th>SIM&nbsp;↑</th>
+              <th>MAE&nbsp;↓</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="ours"><td><strong>CompassNet (Full)</strong></td><td class="best">18.20</td><td class="best">89.2</td><td class="best">0.368</td><td class="best">0.061</td></tr>
+            <tr><td>Baseline (w/o ICI &amp; BCR)</td><td>13.80</td><td>87.2</td><td>0.290</td><td>0.079</td></tr>
+            <tr class="row-split"><td colspan="5">Ablation on ICI</td></tr>
+            <tr><td>w/o ICI</td><td>15.24</td><td>87.8</td><td>0.311</td><td>0.073</td></tr>
+            <tr><td class="pl-8">w/o Background token</td><td>17.58</td><td>88.9</td><td>0.360</td><td>0.064</td></tr>
+            <tr><td class="pl-8">w/o Group relevance loss</td><td>17.26</td><td>88.6</td><td>0.352</td><td>0.066</td></tr>
+            <tr><td class="pl-8">w/o Gated propagation</td><td>16.93</td><td>88.5</td><td>0.343</td><td>0.068</td></tr>
+            <tr class="row-split"><td colspan="5">Ablation on BCR</td></tr>
+            <tr><td>w/o BCR</td><td>16.70</td><td>88.4</td><td>0.353</td><td>0.066</td></tr>
+            <tr><td class="pl-8">w/o TG-Softmax</td><td>17.28</td><td>88.7</td><td>0.357</td><td>0.065</td></tr>
+            <tr><td class="pl-8">w/o TP-HardNeg</td><td>17.62</td><td>88.9</td><td>0.362</td><td>0.063</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ====================================================================== -->
+<!-- 9 · ROBOT — single image only                                            -->
+<!-- ====================================================================== -->
+<section id="robot" class="py-20 lg:py-28 px-6 lg:px-10 bg-paper-soft border-y border-rule">
+  <div class="max-w-content mx-auto">
+    <div class="section-number mb-10 reveal">№ 06 · Robotics</div>
+
+    <div class="reveal mb-12 max-w-3xl">
+      <h2 class="font-display font-bold text-ink text-3xl lg:text-5xl leading-[1.05] mb-3">
+        From Benchmark to <em class="text-blue not-italic">Robot Arm</em>.
+      </h2>
+    </div>
+
+    <figure class="reveal reveal-delay-1">
+      <img src="assets/robot-deployment.png" alt="Real-world robotic grasping in confusing multi-object compositions" loading="lazy" class="w-full h-auto rounded-md border border-rule" />
+      <figcaption class="text-mute italic text-sm mt-4 max-w-4xl leading-relaxed">
+        Each row shows the captured scene, <span class="text-red not-italic font-medium">CompassNet</span>'s affordance prediction on the reconstructed point cloud (red = high probability), and the executed grasp. Top: a cutting query selects the knife over scissors. Bottom: a hammering query selects the hammer over distractors.
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ====================================================================== -->
+<!-- 10 · BIBTEX                                                             -->
+<!-- ====================================================================== -->
+<section id="bibtex" class="py-20 lg:py-28 px-6 lg:px-10 bg-white">
+  <div class="max-w-content mx-auto">
+    <div class="section-number mb-10 reveal">№ 07 · Citation</div>
+
+    <div class="reveal mb-10 max-w-3xl">
+      <h2 class="font-display font-bold text-ink text-3xl lg:text-5xl leading-[1.05] mb-3">
+        Cite this <em class="text-blue not-italic">work</em>.
+      </h2>
+      <p class="font-display italic text-mute text-lg">
+        If you find CompassAD useful in your research, please consider citing.
+      </p>
+    </div>
+
+    <div class="reveal reveal-delay-1 max-w-4xl">
+      <div class="bibtex-block">
+        <button class="copy-btn" id="copyBibtex" aria-label="Copy BibTeX">Copy</button>
+<pre id="bibtexContent">@article{Li2026CompassAD,
+  title          = {CompassAD: Intent-Driven 3D Affordance Grounding in Functionally Competing Objects},
+  author         = {Li, Jingliang and Jia, Jindou and An, Tuo and Zhou, Chuhao and
+                    Chen, Xiangyu and Shan, Shilin and Ma, Boyu and Lyu, Bofan and
+                    Li, Gen and Yang, Jianfei},
+  year           = {2026},
+  eprint         = {2604.02060},
+  archivePrefix  = {arXiv},
+  primaryClass   = {cs.CV}
+}</pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================================== -->
+<!-- 11 · FOOTER — light                                                      -->
+<!-- ====================================================================== -->
+<footer class="border-t border-rule bg-paper-soft py-14 px-6 lg:px-10">
+  <div class="max-w-content mx-auto">
+    <div class="grid md:grid-cols-3 gap-10 mb-10">
+      <div>
+        <div class="smallcaps text-[0.65rem] tracking-[0.25em] text-blue mb-3">About</div>
+        <p class="text-mute text-sm leading-relaxed">
+          A research artifact from <a href="https://marsyang.site/" target="_blank" rel="noopener" class="text-ink hover:text-blue underline decoration-blue/30 underline-offset-2">MARS Lab</a>, Nanyang Technological University, Singapore.
+        </p>
+      </div>
+
+      <div class="text-center">
+        <svg viewBox="0 0 64 64" class="w-12 h-12 mx-auto mb-2 opacity-70">
+          <circle cx="32" cy="32" r="26" fill="none" stroke="#B89968" stroke-width="0.5" opacity="0.5"/>
+          <polygon points="32,4 36,30 32,32 28,30" fill="#1E40AF"/>
+          <polygon points="32,60 28,34 32,32 36,34" fill="#B89968" opacity="0.6"/>
+          <polygon points="60,32 34,28 32,32 34,36" fill="#B89968" opacity="0.85"/>
+          <polygon points="4,32 30,36 32,32 30,28" fill="#B89968" opacity="0.85"/>
+          <polygon points="51.8,12.2 36.2,28 32,32 28,27.8" fill="#B89968" opacity="0.55"/>
+          <polygon points="12.2,51.8 27.8,36 32,32 36,36.2" fill="#B89968" opacity="0.4"/>
+          <polygon points="51.8,51.8 36,36.2 32,32 36.2,28" fill="#B89968" opacity="0.5"/>
+          <polygon points="12.2,12.2 27.8,28 32,32 28,36.2" fill="#B89968" opacity="0.5"/>
+          <circle cx="32" cy="32" r="2" fill="#0A0A0A"/>
+        </svg>
+        <div class="smallcaps text-[0.6rem] tracking-[0.4em] text-mute">N &middot; E &middot; S &middot; W</div>
+      </div>
+
+      <div class="md:text-right">
+        <div class="smallcaps text-[0.65rem] tracking-[0.25em] text-blue mb-3">Contact</div>
+        <p class="text-mute text-sm leading-relaxed mb-1">
+          <a href="mailto:jinglian001@e.ntu.edu.sg" class="text-ink hover:text-blue underline decoration-blue/30 underline-offset-2">jinglian001@e.ntu.edu.sg</a>
+        </p>
+        <p class="text-mute text-sm leading-relaxed mb-1">
+          <a href="mailto:gen.li@ntu.edu.sg" class="text-ink hover:text-blue underline decoration-blue/30 underline-offset-2">gen.li@ntu.edu.sg</a>
+        </p>
+        <p class="text-mute text-sm leading-relaxed">
+          <a href="mailto:jianfei.yang@ntu.edu.sg" class="text-ink hover:text-blue underline decoration-blue/30 underline-offset-2">jianfei.yang@ntu.edu.sg</a>
+        </p>
+      </div>
+    </div>
+
+    <div class="border-t border-rule pt-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-mute text-xs">
+      <p>
+        © 2026 The CompassAD Authors &middot; <a href="https://github.com/Lorenzo-0-0/CompassAD-Intent-Driven-3D-Affordance-Grounding-in-Functionally-Competing-Objects" target="_blank" rel="noopener" class="hover:text-blue">GitHub</a>
+      </p>
+      <p class="smallcaps tracking-[0.2em]">
+        Editorial type by <a href="https://fonts.google.com/specimen/Fraunces" target="_blank" rel="noopener" class="hover:text-blue">Fraunces</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<!-- Scroll-to-top -->
+<a href="#hero" class="scroll-top" id="scrollTop" aria-label="Scroll to top">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <line x1="12" y1="20" x2="12" y2="4"/><polyline points="6,10 12,4 18,10"/>
+  </svg>
+</a>
+
+<!-- ====================================================================== -->
+<!-- INLINE SCRIPTS                                                          -->
+<!-- ====================================================================== -->
+<script>
+(() => {
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', e => {
+      const targetId = link.getAttribute('href');
+      if (targetId === '#' || targetId.length < 2) return;
+      const target = document.querySelector(targetId);
+      if (!target) return;
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      document.getElementById('mobileMenu')?.classList.add('hidden');
+    });
+  });
+
+  // Nav: hide when at hero top, show after scroll
+  const nav = document.getElementById('nav');
+  let lastScroll = 0;
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    if (y > 100) nav.classList.remove('-translate-y-full');
+    else nav.classList.add('-translate-y-full');
+    lastScroll = y;
+  }, { passive: true });
+
+  // Mobile menu toggle
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  menuBtn?.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+
+  // Scroll-to-top button
+  const scrollTop = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 600) scrollTop.classList.add('visible');
+    else scrollTop.classList.remove('visible');
+  }, { passive: true });
+
+  // Reveal on scroll
+  const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  // Counter animation
+  const easeOut = t => 1 - Math.pow(1 - t, 3);
+  const animateCounter = el => {
+    const target = parseFloat(el.dataset.counter);
+    const prefix = el.dataset.prefix || '';
+    const suffix = el.dataset.suffix || '';
+    const isFloat = target % 1 !== 0;
+    const duration = 1600;
+    const start = performance.now();
+    const tick = (now) => {
+      const t = Math.min((now - start) / duration, 1);
+      const v = target * easeOut(t);
+      const display = isFloat ? v.toFixed(1) : Math.floor(v).toLocaleString();
+      el.textContent = prefix + display + suffix;
+      if (t < 1) requestAnimationFrame(tick);
+      else el.textContent = prefix + (isFloat ? target.toFixed(1) : target.toLocaleString()) + suffix;
+    };
+    requestAnimationFrame(tick);
+  };
+  const counterObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCounter(entry.target);
+        counterObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('[data-counter]').forEach(el => counterObserver.observe(el));
+
+  // BibTeX copy
+  const copyBtn = document.getElementById('copyBibtex');
+  copyBtn?.addEventListener('click', async () => {
+    const raw = document.getElementById('bibtexContent').innerText;
+    try {
+      await navigator.clipboard.writeText(raw);
+      copyBtn.textContent = 'Copied!';
+      copyBtn.classList.add('copied');
+      setTimeout(() => { copyBtn.textContent = 'Copy'; copyBtn.classList.remove('copied'); }, 2000);
+    } catch (err) {
+      copyBtn.textContent = 'Failed';
+      setTimeout(() => { copyBtn.textContent = 'Copy'; }, 2000);
+    }
+  });
+
+  // Carousel
+  const track = document.getElementById('carouselTrack');
+  const prev = document.getElementById('prevSlide');
+  const next = document.getElementById('nextSlide');
+  const indicator = document.getElementById('slideIndicator');
+  if (track && prev && next && indicator) {
+    let current = 0;
+    const total = track.children.length;
+    const updateIndicator = () => {
+      indicator.textContent = String(current + 1).padStart(2, '0') + ' / ' + String(total).padStart(2, '0');
+    };
+    const scrollTo = (idx) => {
+      current = (idx + total) % total;
+      track.scrollTo({ left: track.children[current].offsetLeft - track.offsetLeft, behavior: 'smooth' });
+      updateIndicator();
+    };
+    prev.addEventListener('click', () => scrollTo(current - 1));
+    next.addEventListener('click', () => scrollTo(current + 1));
+    // Update indicator on user-driven scroll
+    let scrollTimer;
+    track.addEventListener('scroll', () => {
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(() => {
+        const slideWidth = track.children[0].offsetWidth + 24; // gap
+        current = Math.round(track.scrollLeft / slideWidth);
+        updateIndicator();
+      }, 120);
+    }, { passive: true });
+    updateIndicator();
+  }
+})();
+</script>
+
+</body>
+</html>

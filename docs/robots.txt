@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://lorenzo-0-0.github.io/CompassAD-Intent-Driven-3D-Affordance-Grounding-in-Functionally-Competing-Objects/sitemap.xml
