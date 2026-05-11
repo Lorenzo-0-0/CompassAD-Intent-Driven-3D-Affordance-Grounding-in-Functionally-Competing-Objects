@@ -60,52 +60,6 @@
 
 ---
 
-## :bar_chart: CompassAD Benchmark
-
-<p align="center">
-  <img src="./images/dataset.png" alt="CompassAD benchmark overview" width="88%" />
-</p>
-
-**Overview of the CompassAD benchmark.** *(a)* Affordance concept distribution. *(b)* Object category distribution. *(c)* Hierarchy of confusing pairs grouped by target affordance type. *(d)* Source breakdown of the collected 3D object instances. *(e)* Confusion matrix between affordance and object categories, highlighting the many-to-many nature of real-world affordances. CompassAD comprises **30 confusing pairs · 16 affordance types · 6,422 compositions · 87,964 intent-driven queries**, spanning 105 object categories.
-
----
-
-## :art: Qualitative Comparison
-
-<p align="center">
-  <img src="./images/qualitative.png" alt="Qualitative comparison on CompassAD" width="88%" />
-</p>
-
-**Qualitative comparison on CompassAD.** Each triplet shows ground truth (GT), CompassNet (Ours), and GLANCE (SOTA). *Left:* the same composition queried with different intents activates different objects/regions (chair seat vs. bed surface), illustrating query-dependent disambiguation. *Right:* diverse confusing pairs (knife vs. scissors, skateboard vs. surfboard, kettle vs. cup). Red denotes higher affordance probability.
-
----
-
-## :robot: Real-World Robot Deployment
-
-<p align="center">
-  <img src="./images/robot.png" alt="Real-world robotic grasping" width="88%" />
-</p>
-
-**Real-world robotic grasping in confusing multi-object compositions.** Each row shows the captured scene, CompassNet's affordance prediction on the reconstructed point cloud (red = high probability), and the executed grasp. *Top:* a cutting query selects the knife over scissors. *Bottom:* a hammering query selects the hammer over distractors. CompassNet generalises to real-world grasping from a single RGB image: Grounded-SAM segments object instances, Depth Anything V2 estimates depth, CompassNet predicts per-point affordances, and AnyGrasp produces grasp poses weighted by predicted affordance.
-
----
-
-## :sparkles: More Qualitative Results
-
-<p align="center">
-  <img src="./images/more_results_1.png" alt="Additional qualitative results 1" width="88%" />
-</p>
-
-<p align="center">
-  <img src="./images/more_results_2.png" alt="Additional qualitative results 2" width="88%" />
-</p>
-
-<p align="center">
-  <img src="./images/more_results_3.png" alt="Additional qualitative results 3" width="88%" />
-</p>
-
----
-
 ## :bookmark_tabs: Citation
 
 If you find CompassAD useful in your research, please consider citing:
