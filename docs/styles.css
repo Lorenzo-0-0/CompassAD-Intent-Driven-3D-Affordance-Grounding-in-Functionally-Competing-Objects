@@ -83,13 +83,12 @@ html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; 
   transform: translateY(-1px);
 }
 .author-link.no-link {
-  color: #0A0A0A;
   cursor: default;
   background-image: none;
 }
 .author-link.no-link:hover {
   transform: none;
-  color: #0A0A0A;
+  color: #1E40AF;
 }
 .author-link sup {
   font-size: 0.7em;
