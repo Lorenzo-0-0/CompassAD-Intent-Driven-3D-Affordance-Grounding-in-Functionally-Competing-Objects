@@ -7,9 +7,8 @@
 html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 
 .font-display {
-  font-feature-settings: "ss01", "kern", "liga", "dlig";
-  font-variation-settings: "opsz" 144;
-  letter-spacing: -0.02em;
+  font-feature-settings: "kern", "liga";
+  letter-spacing: -0.015em;
 }
 .font-serif {
   font-feature-settings: "kern", "liga", "onum";
@@ -24,7 +23,7 @@ html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; 
 
 /* ===== Drop cap ===== */
 .drop-cap::first-letter {
-  font-family: 'Fraunces', serif;
+  font-family: 'IBM Plex Serif', 'Source Serif 4', Georgia, serif;
   font-weight: 700;
   font-size: 4em;
   line-height: 0.9;
@@ -118,11 +117,11 @@ html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; 
 
 /* ===== Stats — large numerals ===== */
 .stat-num {
-  font-family: 'Fraunces', serif;
+  font-family: 'IBM Plex Serif', 'Source Serif 4', Georgia, serif;
   font-weight: 600;
-  font-variation-settings: "opsz" 144;
   letter-spacing: -0.02em;
   line-height: 1;
+  font-variant-numeric: tabular-nums;
 }
 
 /* ===== Results table ===== */
