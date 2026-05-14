@@ -274,14 +274,14 @@
     <div class="grid lg:grid-cols-[2fr_1fr] gap-12 lg:gap-20">
       <!-- Prose column -->
       <div class="reveal max-w-prose">
-        <p class="drop-cap text-ink/90 text-[1.05rem] leading-[1.75] mb-5">
+        <p class="drop-cap text-ink/90 text-[1.18rem] leading-[1.7] mb-5">
           In real-world scenes, multiple objects may share identical affordances, yet only one is appropriate under the given task context. We call such cases <em>confusing pairs</em>. Existing 3D affordance methods largely sidestep this challenge by evaluating isolated single objects, often with explicit category names provided in the query.
         </p>
-        <p class="text-ink/90 text-[1.05rem] leading-[1.75] mb-5">
+        <p class="text-ink/90 text-[1.18rem] leading-[1.7] mb-5">
           We formalize <strong class="text-blue">Intent-Driven Confusable Affordance Grounding</strong>, a 3D setting that requires predicting a per-point affordance mask on the correct object within a multi-object point cloud, conditioned on implicit natural-language intent. To study this problem, we construct <strong class="text-blue">CompassAD</strong>, the first benchmark centered on implicit intent in confusing multi-object compositions.
         </p>
-        <p class="text-ink/90 text-[1.05rem] leading-[1.75]">
-          We further propose <strong class="text-blue">CompassNet</strong>, a framework with two dedicated modules. <em><span class="text-cyan-deep">Instance-bounded Cross Injection</span></em> (ICI) constrains language–geometry alignment within object boundaries to prevent cross-object semantic leakage. <em><span class="text-purple-deep">Bi-Level Contrastive Refinement</span></em> (BCR) enforces discrimination at both geometric-group and point levels, sharpening distinctions between target and confusable surfaces. Experiments demonstrate state-of-the-art results on both seen and unseen queries, and deployment on a robotic manipulator confirms effective real-world transfer.
+        <p class="text-ink/90 text-[1.18rem] leading-[1.7]">
+          We further propose <strong class="text-blue">CompassNet</strong>, a framework with two dedicated modules. <strong><em><span class="text-cyan-deep">Instance-bounded Cross Injection</span></em> (ICI)</strong> constrains language–geometry alignment within object boundaries to prevent cross-object semantic leakage. <strong><em><span class="text-purple-deep">Bi-Level Contrastive Refinement</span></em> (BCR)</strong> enforces discrimination at both geometric-group and point levels, sharpening distinctions between target and confusable surfaces. Experiments demonstrate state-of-the-art results on both seen and unseen queries, and deployment on a robotic manipulator confirms effective real-world transfer.
         </p>
       </div>
 
@@ -316,27 +316,27 @@
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-y-10 gap-x-8 text-center lg:text-left">
       <div class="reveal">
         <div class="stat-num text-blue text-4xl lg:text-5xl mb-2" data-counter="30">0</div>
-        <div class="smallcaps text-[0.62rem] tracking-[0.2em] text-mute">Confusing<br/>pairs</div>
+        <div class="smallcaps text-[0.78rem] tracking-[0.18em] text-mute">Confusing<br/>pairs</div>
       </div>
       <div class="reveal reveal-delay-1">
         <div class="stat-num text-blue text-4xl lg:text-5xl mb-2" data-counter="16">0</div>
-        <div class="smallcaps text-[0.62rem] tracking-[0.2em] text-mute">Affordance<br/>types</div>
+        <div class="smallcaps text-[0.78rem] tracking-[0.18em] text-mute">Affordance<br/>types</div>
       </div>
       <div class="reveal reveal-delay-2">
         <div class="stat-num text-blue text-4xl lg:text-5xl mb-2" data-counter="6422">0</div>
-        <div class="smallcaps text-[0.62rem] tracking-[0.2em] text-mute">Multi-object<br/>compositions</div>
+        <div class="smallcaps text-[0.78rem] tracking-[0.18em] text-mute">Multi-object<br/>compositions</div>
       </div>
       <div class="reveal reveal-delay-3">
         <div class="stat-num text-blue text-4xl lg:text-5xl mb-2" data-counter="88" data-suffix="K+">0</div>
-        <div class="smallcaps text-[0.62rem] tracking-[0.2em] text-mute">Intent-driven<br/>queries</div>
+        <div class="smallcaps text-[0.78rem] tracking-[0.18em] text-mute">Intent-driven<br/>queries</div>
       </div>
       <div class="reveal reveal-delay-3">
         <div class="stat-num text-red text-4xl lg:text-5xl mb-2" data-counter="28.3" data-prefix="+" data-suffix="%">0</div>
-        <div class="smallcaps text-[0.62rem] tracking-[0.2em] text-mute">aIoU<br/>gain vs SOTA</div>
+        <div class="smallcaps text-[0.78rem] tracking-[0.18em] text-mute">aIoU<br/>gain vs SOTA</div>
       </div>
       <div class="reveal reveal-delay-3">
         <div class="stat-num text-red text-4xl lg:text-5xl mb-2" data-counter="24.3" data-prefix="+" data-suffix="%">0</div>
-        <div class="smallcaps text-[0.62rem] tracking-[0.2em] text-mute">SIM<br/>gain vs SOTA</div>
+        <div class="smallcaps text-[0.78rem] tracking-[0.18em] text-mute">SIM<br/>gain vs SOTA</div>
       </div>
     </div>
   </div>
@@ -401,8 +401,8 @@
 
     <figure class="reveal reveal-delay-1 mb-20">
       <img src="assets/method-architecture.png" alt="CompassNet architecture: instance-bounded grouping, region-language cross-attention with background token, gated propagation, and bi-level contrastive refinement" loading="lazy" class="w-full h-auto" />
-      <figcaption class="text-mute italic text-sm mt-4 max-w-4xl leading-relaxed">
-        <span class="text-cyan-deep not-italic font-medium">ICI</span> confines region–language interaction within each instance via (i) instance-bounded grouping, (ii) region-language cross-attention with a learnable background token, and (iii) gated propagation back to points. <span class="text-purple-deep not-italic font-medium">BCR</span> adds two training-only contrastive losses: TG-Softmax ranks the in-object region best matching the intent, and TP-HardNeg suppresses high-scoring negatives on confusable surfaces.
+      <figcaption class="text-mute italic text-base mt-4 max-w-4xl leading-relaxed">
+        <span class="text-cyan-deep not-italic font-semibold">ICI</span> confines region–language interaction within each instance via (i) instance-bounded grouping, (ii) region-language cross-attention with a learnable background token, and (iii) gated propagation back to points. <span class="text-purple-deep not-italic font-semibold">BCR</span> adds two training-only contrastive losses: TG-Softmax ranks the in-object region best matching the intent, and TP-HardNeg suppresses high-scoring negatives on confusable surfaces.
       </figcaption>
     </figure>
 
@@ -413,24 +413,24 @@
           <span class="ici-tag">ICI</span>
           <span class="font-display italic text-ink text-lg lg:text-xl">Instance-Bounded Cross Injection</span>
         </div>
-        <p class="text-ink/85 leading-[1.7] mb-6 text-[0.95rem]">
+        <p class="text-ink/85 leading-[1.7] mb-6 text-[1.05rem]">
           Cross-modal fusion is computed independently <strong>within each instance</strong>, so text cues cannot diffuse to competing surfaces.
         </p>
         <ol class="space-y-4">
           <li class="border-l-2 border-cyan pl-4">
-            <div class="smallcaps text-[0.65rem] tracking-[0.2em] text-cyan-deep mb-1">Step 1</div>
-            <h4 class="font-display font-medium text-ink text-base mb-1">Instance-bounded grouping</h4>
-            <p class="text-ink/75 text-sm leading-relaxed">Radius-graph connected components assign each point an instance label; FPS selects region centers within each instance only.</p>
+            <div class="smallcaps text-[0.78rem] tracking-[0.2em] text-cyan-deep mb-1">Step 1</div>
+            <h4 class="font-display font-medium text-ink text-lg mb-1">Instance-bounded grouping</h4>
+            <p class="text-ink/75 text-[1rem] leading-relaxed">Radius-graph connected components assign each point an instance label; FPS selects region centers within each instance only.</p>
           </li>
           <li class="border-l-2 border-cyan pl-4">
-            <div class="smallcaps text-[0.65rem] tracking-[0.2em] text-cyan-deep mb-1">Step 2</div>
-            <h4 class="font-display font-medium text-ink text-base mb-1">Region–language cross-attention</h4>
-            <p class="text-ink/75 text-sm leading-relaxed">Per-instance regions attend to text tokens augmented with a learnable <em>background token</em> — a sink for content no token can explain, enabling correct abstention.</p>
+            <div class="smallcaps text-[0.78rem] tracking-[0.2em] text-cyan-deep mb-1">Step 2</div>
+            <h4 class="font-display font-medium text-ink text-lg mb-1">Region–language cross-attention</h4>
+            <p class="text-ink/75 text-[1rem] leading-relaxed">Per-instance regions attend to text tokens augmented with a learnable <em>background token</em> — a sink for content no token can explain, enabling correct abstention.</p>
           </li>
           <li class="border-l-2 border-cyan pl-4">
-            <div class="smallcaps text-[0.65rem] tracking-[0.2em] text-cyan-deep mb-1">Step 3</div>
-            <h4 class="font-display font-medium text-ink text-base mb-1">Gated region-to-point propagation</h4>
-            <p class="text-ink/75 text-sm leading-relaxed">Each point inverse-distance-pools from its <em>k</em><sub>p</sub>=3 nearest enhanced regions; a multiplicative gate routes language back to points without injecting activations from scratch.</p>
+            <div class="smallcaps text-[0.78rem] tracking-[0.2em] text-cyan-deep mb-1">Step 3</div>
+            <h4 class="font-display font-medium text-ink text-lg mb-1">Gated region-to-point propagation</h4>
+            <p class="text-ink/75 text-[1rem] leading-relaxed">Each point inverse-distance-pools from its <em>k</em><sub>p</sub>=3 nearest enhanced regions; a multiplicative gate routes language back to points without injecting activations from scratch.</p>
           </li>
         </ol>
       </div>
@@ -441,25 +441,25 @@
           <span class="bcr-tag">BCR</span>
           <span class="font-display italic text-ink text-lg lg:text-xl">Bi-Level Contrastive Refinement</span>
         </div>
-        <p class="text-ink/85 leading-[1.7] mb-6 text-[0.95rem]">
+        <p class="text-ink/85 leading-[1.7] mb-6 text-[1.05rem]">
           Two complementary contrastive losses sharpen object selection and point-level discrimination. Both are <strong class="text-red">training-only</strong> — zero inference overhead.
         </p>
         <ol class="space-y-4">
           <li class="border-l-2 border-purple pl-4">
-            <div class="smallcaps text-[0.65rem] tracking-[0.2em] text-purple-deep mb-1">Region · TG-Softmax</div>
-            <h4 class="font-display font-medium text-ink text-base mb-1">Rank in-object regions by intent</h4>
-            <p class="text-ink/75 text-sm leading-relaxed">Soft-label softmax ranks regions by affinity to the query; rewards regions whose points are most densely affordance-positive.</p>
+            <div class="smallcaps text-[0.78rem] tracking-[0.2em] text-purple-deep mb-1">Region · TG-Softmax</div>
+            <h4 class="font-display font-medium text-ink text-lg mb-1">Rank in-object regions by intent</h4>
+            <p class="text-ink/75 text-[1rem] leading-relaxed">Soft-label softmax ranks regions by affinity to the query; rewards regions whose points are most densely affordance-positive.</p>
           </li>
           <li class="border-l-2 border-purple pl-4">
-            <div class="smallcaps text-[0.65rem] tracking-[0.2em] text-purple-deep mb-1">Point · TP-HardNeg</div>
-            <h4 class="font-display font-medium text-ink text-base mb-1">Suppress confident false positives</h4>
-            <p class="text-ink/75 text-sm leading-relaxed">Smooth-max hard-negative mining enforces a margin between affordance points and the hardest negative on the wrong-object surface or same-object non-affordance region.</p>
+            <div class="smallcaps text-[0.78rem] tracking-[0.2em] text-purple-deep mb-1">Point · TP-HardNeg</div>
+            <h4 class="font-display font-medium text-ink text-lg mb-1">Suppress confident false positives</h4>
+            <p class="text-ink/75 text-[1rem] leading-relaxed">Smooth-max hard-negative mining enforces a margin between affordance points and the hardest negative on the wrong-object surface or same-object non-affordance region.</p>
           </li>
         </ol>
 
-        <div class="bg-purple-tint/60 border border-purple/30 rounded-sm p-4 mt-6">
-          <div class="smallcaps text-[0.62rem] tracking-[0.2em] text-purple-deep mb-1">No-Cost at Inference</div>
-          <p class="text-ink/85 text-sm leading-relaxed">
+        <div class="bg-purple-tint/60 border border-purple/30 rounded-sm p-5 mt-6">
+          <div class="smallcaps text-[0.78rem] tracking-[0.2em] text-purple-deep mb-1">No-Cost at Inference</div>
+          <p class="text-ink/85 text-[1rem] leading-relaxed">
             BCR backpropagates through ICI's representations during training but is dropped at inference. <strong>Zero added parameters or computation</strong> in the deployed model.
           </p>
         </div>
