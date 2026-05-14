@@ -351,21 +351,21 @@
 
     <div class="grid lg:grid-cols-[1.1fr_1fr] gap-12 items-start">
       <div class="reveal max-w-prose">
-        <p class="text-ink/90 text-[1.05rem] leading-[1.75] mb-5">
+        <p class="text-ink/90 text-[1.18rem] leading-[1.7] mb-5">
           Kitchens, workshops, and offices present multiple objects in close proximity. A knife and scissors both afford <em>cutting</em>. A skateboard and surfboard both afford <em>riding</em>. Shared affordance renders the target ambiguous from appearance alone — correct selection must be conditioned on <strong class="text-blue">task intent</strong>.
         </p>
 
-        <p class="text-ink/90 text-[1.05rem] leading-[1.75] mb-8">
+        <p class="text-ink/90 text-[1.18rem] leading-[1.7] mb-8">
           Given a multi-object point cloud and a natural-language query describing an intended action, our task is to predict a per-point affordance mask on the correct object, disambiguate confusable alternatives, and <strong class="text-red">abstain</strong> when no object can fulfill the intent.
         </p>
 
         <!-- Math card -->
-        <div class="bg-paper-soft border border-rule rounded-md p-5 font-mono text-sm">
-          <div class="smallcaps text-[0.65rem] text-blue tracking-[0.2em] mb-3 font-sans">Formulation</div>
+        <div class="bg-paper-soft border border-rule rounded-md p-5 font-mono text-base">
+          <div class="smallcaps text-[0.78rem] text-blue tracking-[0.2em] mb-3 font-sans">Formulation</div>
           <div class="text-ink leading-relaxed">
             <span class="text-red">ŷ</span> = <span class="text-blue">f<sub>θ</sub></span>(<span class="text-cyan-deep">𝒫</span>, <span class="text-purple-deep">𝒬</span>) ∈ [0,1]<sup>N</sup>
           </div>
-          <div class="text-mute text-xs mt-3 font-serif italic">
+          <div class="text-mute text-sm mt-3 font-serif italic">
             Point cloud 𝒫 + query 𝒬 → per-point affordance probability ŷ.<br/>Two queries 𝒬<sub>a</sub> ≠ 𝒬<sub>b</sub> over the same 𝒫 yield different masks.
           </div>
         </div>
