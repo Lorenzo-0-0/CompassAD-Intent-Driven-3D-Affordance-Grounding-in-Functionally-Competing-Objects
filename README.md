@@ -8,7 +8,7 @@
 </p>
 
 <p align="center">
-  <strong>Jingliang Li</strong><sup>1</sup> &nbsp;&nbsp;
+  <a href="https://lorenzo-0-0.github.io/"><strong>Jingliang Li</strong></a><sup>1</sup> &nbsp;&nbsp;
   <a href="https://jiajindou.github.io/"><strong>Jindou Jia</strong></a><sup>1</sup> &nbsp;&nbsp;
   <a href="https://morpheus-an.github.io/"><strong>Tuo An</strong></a><sup>1</sup> &nbsp;&nbsp;
   <a href="https://chuhaozhou99.github.io/Chuhao-Zhou/"><strong>Chuhao Zhou</strong></a><sup>1</sup>
